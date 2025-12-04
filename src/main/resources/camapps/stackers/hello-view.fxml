@@ -6,20 +6,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" prefHeight="198.0" prefWidth="443.0" spacing="20.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/25" fx:controller="camapps.stackers.HelloController">
+<VBox alignment="CENTER" prefHeight="212.0" prefWidth="471.0" spacing="20.0" style="-fx-background-color: A3B087;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camapps.stackers.HelloController">
     <padding>
         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
     </padding>
-   <Label text="Welcome to">
+   <Label text="Welcome to" textFill="WHITE">
       <font>
-         <Font size="21.0" />
+         <Font name="System Bold" size="21.0" />
       </font>
    </Label>
 
-    <Label fx:id="welcomeText" text="STACKERS">
+    <Label fx:id="welcomeText" text="STACKERS" textFill="#435663">
       <font>
-         <Font name="Helvetica Neue Bold" size="37.0" />
+         <Font name="Rapier Zero Italic" size="37.0" />
       </font></Label>
-   <Label text="Press &quot;Play&quot; to continue!" />
-    <Button minHeight="25.0" minWidth="100.0" onAction="#onHelloButtonClick" text="Play" />
+   <Label text="Press &quot;Play&quot; to continue!" textFill="WHITE">
+      <font>
+         <Font name="System Bold" size="13.0" />
+      </font></Label>
+    <Button minHeight="25.0" minWidth="100.0" onAction="#onHelloButtonClick" style="-fx-background-color: F5D2D2;" text="Play" />
 </VBox>

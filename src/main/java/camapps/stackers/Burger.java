@@ -14,6 +14,10 @@ public class Burger
     private final ArrayList<String> plainBurger;
     private final ArrayList<String> doubleCheeseBurger;
     private final ArrayList<String> plainCheeseBurger;
+    private final ArrayList<String> plainDoubleBurger;
+    private final ArrayList<String> plainDoubleCheeseBurger;
+    private final ArrayList<String> veggieBurger;
+    private final ArrayList<String> lettuceWrapCheeseBurger;
 
     private final ArrayList<ArrayList<String>> allRecipes;
 
@@ -27,7 +31,8 @@ public class Burger
         // Populating cheeseBurger
         this.cheeseBurger = new ArrayList<>();
         this.cheeseBurger.add("Bottom Bun"); this.cheeseBurger.add("Patty"); this.cheeseBurger.add("Cheese");
-        this.cheeseBurger.add("Onion");this.cheeseBurger.add("Lettuce"); this.cheeseBurger.add("Tomato"); this.cheeseBurger.add("Top Bun");
+        this.cheeseBurger.add("Onion");this.cheeseBurger.add("Lettuce"); this.cheeseBurger.add("Tomato");
+        this.cheeseBurger.add("Top Bun");
 
         // Populating plainBurger
         this.plainBurger = new ArrayList<>();
@@ -44,13 +49,37 @@ public class Burger
        this.plainCheeseBurger.add("Bottom Bun"); this.plainCheeseBurger.add("Patty");
        this.plainCheeseBurger.add("Cheese"); this.plainCheeseBurger.add("Top Bun");
 
-        // Populating allRecipes with all known Burger Recipes.
+       //Populate plainDoubleBurger
+        this.plainDoubleBurger = new ArrayList<>();
+        this.plainDoubleBurger.add("Bottom Bun"); this.plainDoubleBurger.add("Patty");
+        this.plainDoubleBurger.add("Patty"); this.plainDoubleBurger.add("Top Bun");
+
+        //Populate plainDoubleCheeseBurger
+        this.plainDoubleCheeseBurger = new ArrayList<>();
+        this.plainDoubleCheeseBurger.add("Bottom Bun"); this.plainDoubleCheeseBurger.add("Patty");
+        this.plainDoubleCheeseBurger.add("Cheese"); this.plainDoubleCheeseBurger.add("Patty");
+        this.plainDoubleCheeseBurger.add("Cheese"); this.plainDoubleCheeseBurger.add("Top Bun");
+
+        // Populate veggieBurger
+        this.veggieBurger = new ArrayList<>();
+        this.veggieBurger.add("Bottom Bun"); this.veggieBurger.add("Lettuce");
+        this.veggieBurger.add("Onion"); this.veggieBurger.add("Tomato"); this.veggieBurger.add("Top Bun");
+
+        //Populate lettuceWrapCheeseBurger
+        this.lettuceWrapCheeseBurger = new ArrayList<>();
+        this.lettuceWrapCheeseBurger.add("Lettuce"); this.lettuceWrapCheeseBurger.add("Patty"); this.lettuceWrapCheeseBurger.add("Cheese");
+        this.lettuceWrapCheeseBurger.add("Onion"); this.lettuceWrapCheeseBurger.add("Tomato"); this.lettuceWrapCheeseBurger.add("Lettuce");
+
+       // Populating allRecipes with all known Burger Recipes.
         this.allRecipes = new ArrayList<>();
         this.allRecipes.add(this.cheeseBurger);
         this.allRecipes.add(this.plainBurger);
         this.allRecipes.add(this.doubleCheeseBurger);
         this.allRecipes.add(this.plainCheeseBurger);
-
+        this.allRecipes.add(this.plainDoubleBurger);
+        this.allRecipes.add(this.plainDoubleCheeseBurger);
+        this.allRecipes.add(this.veggieBurger);
+        this.allRecipes.add(this.lettuceWrapCheeseBurger);
 
         // GENERATE RANDOM RECIPE TO MAKE
         this.randomizeRecipe();
@@ -101,6 +130,20 @@ public class Burger
     {
         return plainCheeseBurger;
     }
+
+    public ArrayList<String> getPlainDoubleBurger()
+    {
+        return plainDoubleBurger;
+    }
+
+    public ArrayList<String> getPlainDoubleCheeseBurger()
+    {
+        return plainDoubleCheeseBurger;
+    }
+
+    public ArrayList<String> getVeggieBurger() { return veggieBurger;}
+
+    public ArrayList<String> getLettuceWrapCheeseBurger() { return lettuceWrapCheeseBurger;}
 
     /**
      * Checks if the dropped ingredient matches the next expected ingredient in the sequence.

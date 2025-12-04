@@ -16,31 +16,31 @@
 
 <!-- CRITICAL FIX: Ensure the controller path uses the full package name -->
 
-<AnchorPane prefHeight="633.0" prefWidth="924.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camapps.stackers.BurgerController">
+<AnchorPane prefHeight="633.0" prefWidth="924.0" style="-fx-background-color: A3B087;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="camapps.stackers.BurgerController">
     <children>
 
         <!-- GAME STATUS AREA: Recipe and Message Labels -->
-        <VBox alignment="CENTER" layoutX="20.0" layoutY="55.0" prefWidth="860.0" spacing="10" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
-            <Label text="Follow the recipe to stack the Burger!" textFill="#2c3e50">
+        <VBox alignment="CENTER" layoutX="20.0" layoutY="55.0" prefWidth="557.0" spacing="10" style="-fx-background-color: #435663;" AnchorPane.leftAnchor="20.0" AnchorPane.rightAnchor="20.0">
+            <Label text="Follow the recipe to stack the Burger!" textFill="WHITE">
                 <font>
                     <Font name="System Bold" size="24.0" />
                 </font>
             </Label>
             <!-- LINK 1: recipeDisplayLabel -->
-            <Label fx:id="recipeDisplayLabel" alignment="CENTER" text="Loading Recipe..." textFill="#2980b9" wrapText="true">
+            <Label fx:id="recipeDisplayLabel" alignment="CENTER" text="Loading Recipe..." textFill="#bde6ff" wrapText="true">
                 <font>
                     <Font size="14.0" />
                 </font>
             </Label>
             <!-- LINK 2: messageLabel -->
-            <Label fx:id="messageLabel" alignment="CENTER" text="Click a button to start stacking!" textFill="#e74c3c" />
+            <Label fx:id="messageLabel" alignment="CENTER" text="Click a button to start stacking!" textFill="#79e53c" />
             <padding>
                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
             </padding>
         </VBox>
 
-        <!-- INGREDIENT BUTTONS (Uses handleIngredientDrop and userData) -->
-        <HBox layoutX="153.0" layoutY="148.0" prefHeight="91.0" prefWidth="590.0" AnchorPane.leftAnchor="153.0" AnchorPane.rightAnchor="157.0">
+           <!-- INGREDIENT BUTTONS (Uses handleIngredientDrop and userData) -->
+        <HBox layoutX="163.0" layoutY="160.0" prefHeight="91.0" prefWidth="590.0" AnchorPane.leftAnchor="163.0" AnchorPane.rightAnchor="147.0">
             <children>
                 <GridPane prefHeight="71.0" prefWidth="581.0">
                     <columnConstraints>
@@ -57,7 +57,7 @@
                     </rowConstraints>
                     <children>
                         <!-- BUTTON 1: Top Bun -->
-                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" textAlignment="CENTER" userData="Top Bun" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" textAlignment="CENTER" userData="Top Bun" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -68,52 +68,56 @@
                         </Button>
                         <Label alignment="TOP_LEFT" text="Top Bun" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 2: Bottom Bun -->
-                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Bottom Bun" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 2: Bottom Bun -->
+                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Bottom Bun" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/BottomBun.png" />
-                                    </image></ImageView>
+                                    </image>
+                        </ImageView>
                             </graphic>
                         </Button>
                         <Label alignment="TOP_LEFT" text="Bottom Bun" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 3: Patty -->
-                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Patty" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 3: Patty -->
+                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Patty" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/Patty.png" />
-                                    </image></ImageView>
+                                    </image>
+                        </ImageView>
                             </graphic>
                         </Button>
                         <Label text="Patty" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 4: Cheese -->
-                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Cheese" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 4: Cheese -->
+                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Cheese" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/Cheese.png" />
-                                    </image></ImageView>
+                                    </image>
+                        </ImageView>
                             </graphic>
                         </Button>
                         <Label text="Cheese" GridPane.columnIndex="3" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 5: Lettuce (FIXED userData placement) -->
-                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Lettuce" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 5: Lettuce (FIXED userData placement) -->
+                        <Button alignment="CENTER" minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Lettuce" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="@../../images/Lettuce.png" />
-                                    </image></ImageView>
+                                    </image>
+                        </ImageView>
                             </graphic>
                         </Button>
                         <Label text="Lettuce" GridPane.columnIndex="4" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 6: Tomato (FIXED userData placement) -->
-                        <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Tomato" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 6: Tomato (FIXED userData placement) -->
+                        <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Tomato" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -124,8 +128,8 @@
                         </Button>
                         <Label text="Tomato" GridPane.columnIndex="5" GridPane.halignment="CENTER" GridPane.valignment="BOTTOM" />
 
-                        <!-- BUTTON 7: Onion (FIXED userData placement) -->
-                        <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" userData="Onion" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                           <!-- BUTTON 7: Onion (FIXED userData placement) -->
+                        <Button minHeight="50.0" minWidth="50.0" mnemonicParsing="false" onAction="#handleIngredientDrop" style="-fx-background-color: F5D2D2;" userData="Onion" GridPane.columnIndex="6" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
                             <graphic>
                                 <ImageView fitHeight="50.0" fitWidth="50.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
@@ -144,12 +148,12 @@
         <!-- LINK 3: burgerAssemblyPlate -->
         <StackPane fx:id="burgerAssemblyPlate" layoutX="325.0" layoutY="270.0" prefHeight="300.0" prefWidth="250.0" style="-fx-background-color: #ecf0f1; -fx-border-color: #bdc3c7; -fx-border-width: 2;" AnchorPane.bottomAnchor="130.0" AnchorPane.leftAnchor="325.0" AnchorPane.rightAnchor="325.0" AnchorPane.topAnchor="270.0">
             <children>
-                <Label text="START STACKING HERE" textFill="#7f8c8d" />
+                <Label text="BURGER APPEARS HERE" textFill="#7f8c8d" />
             </children>
         </StackPane>
 
         <!-- LINK 5: handleSubmitBurger -->
-        <Button layoutX="412.0" layoutY="548.0" mnemonicParsing="false" onAction="#submitBurger" prefHeight="35.0" prefWidth="100.0" text="Order Up!" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="412.0">
+        <Button layoutX="412.0" layoutY="548.0" mnemonicParsing="false" onAction="#submitBurger" prefHeight="35.0" prefWidth="100.0" style="-fx-background-color: F5D2D2;" text="Order Up!" AnchorPane.bottomAnchor="50.0" AnchorPane.rightAnchor="412.0">
             <font>
                 <Font size="18.0" />
             </font>

@@ -19,7 +19,8 @@ public class BurgerController {
     private final Burger game = new Burger();
 
     // --- 2. State for Visual Stacking ---
-    private double yOffset = 0.0;
+    // UPDATED: Start yOffset at a positive value (e.g., 100.0) to ground the stack lower on the plate.
+    private double yOffset = 100.0;
     private final Map<String, Image> imageMap = new HashMap<>();
 
     // --- 3. FXML Component Links (MUST MATCH play-scene.fxml) ---
@@ -39,21 +40,22 @@ public class BurgerController {
     public void initialize()
     {
         try {
-            // Populate the image map. Keys must match the userData in play-scene.fxml
-            imageMap.put("Bottom Bun", loadImage("/camapps/stackers/images/BottomBun.png"));
-            imageMap.put("Patty", loadImage("/camapps/stackers/images/Patty.png"));
-            imageMap.put("Cheese", loadImage("/camapps/stackers/images/Cheese.png"));
-            imageMap.put("Lettuce", loadImage("/camapps/stackers/images/Lettuce.png"));
-            imageMap.put("Tomato", loadImage("/camapps/stackers/images/Tomato.png"));
-            imageMap.put("Top Bun", loadImage("/camapps/stackers/images/TopBun.png"));
-            imageMap.put("Onion", loadImage("/camapps/stackers/images/Onions.png"));
+            // Paths are corrected based on previous debugging
+            imageMap.put("Bottom Bun", loadImage("/images/BottomBun.png"));
+            imageMap.put("Patty", loadImage("/images/Patty.png"));
+            imageMap.put("Cheese", loadImage("/images/Cheese.png"));
+            imageMap.put("Lettuce", loadImage("/images/Lettuce.png"));
+            imageMap.put("Tomato", loadImage("/images/Tomato.png"));
+            imageMap.put("Top Bun", loadImage("/images/TopBun.png"));
+            imageMap.put("Onion", loadImage("/images/Onions.png"));
         } catch (Exception e)
         {
-            System.err.println("Error loading one or more image resources: " + e.getMessage());
+            System.err.println("FATAL ERROR: Failed to load burger images during initialization.");
+            System.err.println(e.getMessage());
             e.printStackTrace();
             if (messageLabel != null)
             {
-                messageLabel.setText("ERROR: Failed to load burger images. Check file paths.");
+                messageLabel.setText("FATAL ERROR: Failed to load burger images. Check console for exact file path error!");
             }
             return;
         }
@@ -61,11 +63,11 @@ public class BurgerController {
         startGame();
     }
 
-    /** Loads an Image object from the classpath. */
+    /** * Loads an Image object from the classpath. */
     private Image loadImage(String path) {
         try (InputStream is = getClass().getResourceAsStream(path)) {
             if (is == null) {
-                throw new IllegalArgumentException("Resource not found: " + path);
+                throw new IllegalArgumentException("Resource NOT FOUND at classpath path: " + path);
             }
             return new Image(is);
         } catch (Exception e) {
@@ -81,8 +83,9 @@ public class BurgerController {
         game.nextIngredient = 0;
 
         burgerAssemblyPlate.getChildren().clear();
-        burgerAssemblyPlate.getChildren().add(new Label("START STACKING HERE"));
-        yOffset = 0.0;
+        burgerAssemblyPlate.getChildren().add(new Label("BURGER APPEARS HERE"));
+        // Reset yOffset to the new starting position
+        yOffset = 100.0;
 
         String recipeName = getRecipeName(game);
         ArrayList<String> recipeList = game.getCurrentRecipe();
@@ -102,6 +105,14 @@ public class BurgerController {
         {
             return "DOUBLE CHEESE BURGER";
         }
+        else if(current.equals(game.getPlainDoubleBurger()))
+        {
+            return "DOUBLE PLAIN BURGER";
+        }
+        else if(current.equals(game.getPlainDoubleCheeseBurger()))
+        {
+            return "DOUBLE PLAIN CHEESE BURGER";
+        }
         else if (current.equals(game.getPlainCheeseBurger()))
         {
             return "PLAIN CHEESE BURGER";
@@ -110,6 +121,15 @@ public class BurgerController {
         {
             return "PLAIN BURGER";
         }
+        else if (current.equals(game.getVeggieBurger()))
+        {
+            return "VEGGIE BURGER";
+        }
+        else if(current.equals(game.getLettuceWrapCheeseBurger()))
+        {
+            return "LETTUCE WRAP CHEESE BURGER";
+        }
+
         return "CUSTOM BURGER";
     }
 
@@ -118,6 +138,13 @@ public class BurgerController {
     private void handleIngredientDrop(ActionEvent event) {
         Button clickedButton = (Button) event.getSource();
         String ingredientName = (String) clickedButton.getUserData();
+
+        // CRITICAL CHECK: Ensure the image map has this ingredient
+        if (!imageMap.containsKey(ingredientName)) {
+            messageLabel.setText("INTERNAL ERROR: Image for '" + ingredientName + "' was not loaded. Cannot stack.");
+            System.err.println("Image map is missing key: '" + ingredientName + "'. CHECK YOUR INITIALIZE METHOD FOR FAILED IMAGE LOADS.");
+            return;
+        }
 
         boolean isCorrect = game.processDrop(ingredientName);
 
@@ -140,7 +167,8 @@ public class BurgerController {
 
             burgerAssemblyPlate.getChildren().add(ingredientImage);
 
-            yOffset -= 30.0;
+            // UPDATED: Decrement by a smaller amount (20.0) for a tighter stack.
+            yOffset -= 20.0;
 
         }
         else
@@ -149,10 +177,8 @@ public class BurgerController {
                     game.getCurrentRecipe().get(game.nextIngredient) :
                     "None (Burger is full)";
 
-            messageLabel.setText("WRONG! Expected " + expected + ". Reset the plate.");
-            // Code where if the user presses another button, the program keep telling the user to restart.
-            resetButton(event);
-
+            messageLabel.setText("WRONG! Expected " + expected + ". Forced restart.");
+            resetGame(); // Calls the internal private reset method
         }
     }
 
@@ -162,7 +188,13 @@ public class BurgerController {
     {
         if (game.getCurrentRecipe().size() > game.getMyBurger().size())
         {
-            messageLabel.setText("Burger is incomplete! Finish stacking. Needed: ");
+            // The index of the first missing ingredient is equal to the number of ingredients already stacked
+            int nextRequiredIndex = game.getMyBurger().size();
+
+            // Get the name of the missing ingredient from the recipe list
+            String missingIngredient = game.getCurrentRecipe().get(nextRequiredIndex);
+
+            messageLabel.setText("BURGER INCOMPLETE! You are currently missing: " + missingIngredient + ". Keep stacking!");
             return;
         }
 
@@ -177,14 +209,14 @@ public class BurgerController {
         }
     }
 
-    /** Handles the click event for the "Delete (Reset)" button. */
-    @FXML
-    private void resetButton(ActionEvent event) {
+    /** Resets the current stack and game state (called internally on error or win/loss). */
+    private void resetGame() {
         messageLabel.setText("Stack Cleared! Start over on the same order.");
         game.getMyBurger().clear();
         game.nextIngredient = 0;
         burgerAssemblyPlate.getChildren().clear();
-        burgerAssemblyPlate.getChildren().add(new Label("START STACKING HERE"));
-        yOffset = 0.0;
+        burgerAssemblyPlate.getChildren().add(new Label("BURGER GOES HERE"));
+        // Reset yOffset to the new starting position
+        yOffset = 100.0;
     }
 }
