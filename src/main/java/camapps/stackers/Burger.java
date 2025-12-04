@@ -16,7 +16,7 @@ public class Burger
     private final ArrayList<String> plainCheeseBurger;
     private final ArrayList<String> plainDoubleBurger;
     private final ArrayList<String> plainDoubleCheeseBurger;
-    private final ArrayList<String> veggieBurger;
+    private final ArrayList<String> veggieBurger; // Easter Egg Burger
     private final ArrayList<String> lettuceWrapCheeseBurger;
 
     private final ArrayList<ArrayList<String>> allRecipes;
@@ -149,8 +149,8 @@ public class Burger
      * Checks if the dropped ingredient matches the next expected ingredient in the sequence.
      * This method runs during assembly.
      */
-    public boolean processDrop(String droppedIngredientName) {
-
+    public boolean processDrop(String droppedIngredientName)
+    {
         if (nextIngredient >= currentRecipe.size())
         {
             System.out.println("Burger is already finished! Press Send Burger to score.");
