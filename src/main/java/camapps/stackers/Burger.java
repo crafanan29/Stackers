@@ -18,6 +18,7 @@ public class Burger
     private final ArrayList<String> plainDoubleCheeseBurger;
     private final ArrayList<String> veggieBurger; // Easter Egg Burger
     private final ArrayList<String> lettuceWrapCheeseBurger;
+    // private final ArrayList<String> trexBurger;
 
     private final ArrayList<ArrayList<String>> allRecipes;
 
@@ -70,6 +71,18 @@ public class Burger
         this.lettuceWrapCheeseBurger.add("Lettuce"); this.lettuceWrapCheeseBurger.add("Patty"); this.lettuceWrapCheeseBurger.add("Cheese");
         this.lettuceWrapCheeseBurger.add("Onion"); this.lettuceWrapCheeseBurger.add("Tomato"); this.lettuceWrapCheeseBurger.add("Lettuce");
 
+        // Populate trexBurger
+        /*
+        this.trexBurger = new ArrayList<>();
+        this.trexBurger.add("Bottom Bun"); this.trexBurger.add("Cheese"); this.trexBurger.add("Patty"); this.trexBurger.add("Cheese");
+        this.trexBurger.add("Patty"); this.trexBurger.add("Cheese"); this.trexBurger.add("Patty");
+        this.trexBurger.add("Cheese"); this.trexBurger.add("Patty"); this.trexBurger.add("Cheese");
+        this.trexBurger.add("Patty"); this.trexBurger.add("Cheese"); this.trexBurger.add("Patty");
+        this.trexBurger.add("Cheese"); this.trexBurger.add("Patty"); this.trexBurger.add("Cheese");
+        this.trexBurger.add("Patty"); this.trexBurger.add("Cheese"); this.trexBurger.add("Patty");
+        this.trexBurger.add("Lettuce"); this.trexBurger.add("Tomato"); this.trexBurger.add("Onion"); this.trexBurger.add("Top Bun");
+        */
+        
        // Populating allRecipes with all known Burger Recipes.
         this.allRecipes = new ArrayList<>();
         this.allRecipes.add(this.cheeseBurger);
@@ -78,8 +91,9 @@ public class Burger
         this.allRecipes.add(this.plainCheeseBurger);
         this.allRecipes.add(this.plainDoubleBurger);
         this.allRecipes.add(this.plainDoubleCheeseBurger);
-        this.allRecipes.add(this.veggieBurger);
-        this.allRecipes.add(this.lettuceWrapCheeseBurger);
+        this.allRecipes.add(this.veggieBurger);                 // Easter Egg Burger
+        this.allRecipes.add(this.lettuceWrapCheeseBurger);      // Easter Egg Burger
+        // this.allRecipes.add(this.trexBurger)                 // Easter Egg Burger
 
         // GENERATE RANDOM RECIPE TO MAKE
         this.randomizeRecipe();
@@ -144,6 +158,8 @@ public class Burger
     public ArrayList<String> getVeggieBurger() { return veggieBurger;}
 
     public ArrayList<String> getLettuceWrapCheeseBurger() { return lettuceWrapCheeseBurger;}
+
+    // public ArrayList<String> getTrexBurger() { return trexBurger;}
 
     /**
      * Checks if the dropped ingredient matches the next expected ingredient in the sequence.
