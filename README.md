@@ -53,4 +53,4 @@ Submit: Once you have placed all required ingredients, click the "Order Up!" but
 
 UML Diagram
 
-![StackersUMLDiagram.png](src/StackersUMLDiagram.png)
+![UMLDiagram.png](src/UMLDiagram.png)
