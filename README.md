@@ -1,4 +1,4 @@
-# **Stackers**
+# **Title: Stackers**
 
 Stackers is a simple JavaFX application designed for the user to stack burgers in a specific order. There are randomized recipes based on customer recipes, all with a set specific order
 
@@ -51,6 +51,11 @@ Handle Errors: If you click the wrong ingredient, the stack will reset, and you 
 
 Submit: Once you have placed all required ingredients, click the "Order Up!" button to check if the stack is correct and complete the order.
 
-UML Diagram
+# **Application in use**
+![StackersShowcase.gif](src/StackersShowcase.gif)
+
+# **GUI Wireframe**
+![StackersFinalWireframe.png](src/StackersFinalWireframe.png)
+# **UML Diagram**
 
 ![UMLDiagram.png](src/UMLDiagram.png)

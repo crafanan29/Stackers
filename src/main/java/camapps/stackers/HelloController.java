@@ -23,7 +23,7 @@ public class HelloController {
         Stage stage = (Stage) source.getScene().getWindow(); // Another scene
         FXMLLoader fxmlLoader = new FXMLLoader(HelloApplication.class.getResource("play-scene.fxml"));
         Scene scene = new Scene(fxmlLoader.load());
-        stage.setTitle("It worked!");
+        stage.setTitle("Play Scene");
         stage.setScene(scene);
 
     }
