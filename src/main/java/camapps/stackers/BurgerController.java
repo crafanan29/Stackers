@@ -22,7 +22,7 @@ public class BurgerController {
     private double yOffset = 100.0;
     private final Map<String, Image> imageMap = new HashMap<>();
 
-    // --- 3. FXML Component Links (MUST MATCH play-scene.fxml) ---
+    // FXML Component Links
     @FXML
     private StackPane burgerAssemblyPlate;
 
