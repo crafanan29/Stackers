@@ -55,6 +55,10 @@ Submit: Once you have placed all required ingredients, click the "Order Up!" but
 ![StackersShowcase.gif](src/StackersShowcase.gif)
 
 # **GUI Wireframe**
+Title Screen
+![TitleScreen.png](src/TitleScreen.png)
+
+Play Screen
 ![StackersFinalWireframe.png](src/StackersFinalWireframe.png)
 # **UML Diagram**
 
