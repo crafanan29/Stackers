@@ -15,11 +15,10 @@ import java.io.InputStream;
 
 public class BurgerController {
 
-    // --- 1. Game Logic Instance ---
+    // Game Logic
     private final Burger game = new Burger();
 
-    // --- 2. State for Visual Stacking ---
-    // UPDATED: Start yOffset at a positive value (e.g., 100.0) to ground the stack lower on the plate.
+    // State for Visual Stacking
     private double yOffset = 100.0;
     private final Map<String, Image> imageMap = new HashMap<>();
 
@@ -39,7 +38,8 @@ public class BurgerController {
     @FXML
     public void initialize()
     {
-        try {
+        try
+        {
             // Paths are corrected based on previous debugging
             imageMap.put("Bottom Bun", loadImage("/images/BottomBun.png"));
             imageMap.put("Patty", loadImage("/images/Patty.png"));
@@ -48,7 +48,8 @@ public class BurgerController {
             imageMap.put("Tomato", loadImage("/images/Tomato.png"));
             imageMap.put("Top Bun", loadImage("/images/TopBun.png"));
             imageMap.put("Onion", loadImage("/images/Onions.png"));
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             System.err.println("FATAL ERROR: Failed to load burger images during initialization.");
             System.err.println(e.getMessage());
@@ -63,19 +64,24 @@ public class BurgerController {
         startGame();
     }
 
-    /** * Loads an Image object from the classpath. */
-    private Image loadImage(String path) {
-        try (InputStream is = getClass().getResourceAsStream(path)) {
-            if (is == null) {
+    //Loads an Image object from the classpath.
+    private Image loadImage(String path)
+    {
+        try (InputStream is = getClass().getResourceAsStream(path))
+        {
+            if (is == null)
+            {
                 throw new IllegalArgumentException("Resource NOT FOUND at classpath path: " + path);
             }
             return new Image(is);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             throw new RuntimeException("Could not load image at path: " + path, e);
         }
     }
 
-    /** Resets the game state and UI to start a new round. */
+    //Resets the game state and UI to start a new round.
     private void startGame()
     {
         game.randomizeRecipe();         //Randomizes recipe each time the game is started.
@@ -93,7 +99,7 @@ public class BurgerController {
         messageLabel.setText("Start stacking the " + recipeName + "!");
     }
 
-    /** Helper method to determine the friendly name of the current recipe. */
+    //Helper method to determine the friendly name of the current recipe.
     private String getRecipeName(Burger game)
     {
         ArrayList<String> current = game.getCurrentRecipe();
@@ -132,14 +138,16 @@ public class BurgerController {
         return "CUSTOM BURGER";
     }
 
-    /** CORE: Handles the click event for ALL ingredient buttons. */
+    //CORE: Handles the click event for ALL ingredient buttons.
     @FXML
-    private void handleIngredientDrop(ActionEvent event) {
+    private void handleIngredientDrop(ActionEvent event)
+    {
         Button clickedButton = (Button) event.getSource();
         String ingredientName = (String) clickedButton.getUserData();
 
         // CRITICAL CHECK: Ensure the image map has this ingredient
-        if (!imageMap.containsKey(ingredientName)) {
+        if (!imageMap.containsKey(ingredientName))
+        {
             messageLabel.setText("INTERNAL ERROR: Image for '" + ingredientName + "' was not loaded. Cannot stack.");
             System.err.println("Image map is missing key: '" + ingredientName + "'. CHECK YOUR INITIALIZE METHOD FOR FAILED IMAGE LOADS.");
             return;
@@ -147,7 +155,8 @@ public class BurgerController {
 
         boolean isCorrect = game.processDrop(ingredientName);
 
-        if (isCorrect) {
+        if (isCorrect)
+        {
             String nextExpected = (game.nextIngredient < game.getCurrentRecipe().size()) ?
                     game.getCurrentRecipe().get(game.nextIngredient) : "Press ORDER UP!";
             messageLabel.setText("SUCCESS! Next up: " + nextExpected);
@@ -181,7 +190,7 @@ public class BurgerController {
         }
     }
 
-    /** Handles the click event for the "Send Burger" (Submit) button. */
+    //Handles the click event for the "Send Burger" (Submit) button.
     @FXML
     private void submitBurger(ActionEvent event)
     {
@@ -197,19 +206,22 @@ public class BurgerController {
             return;
         }
 
-        boolean isMatch = game.checkBurger();
+        boolean isMatch = game.checkBurger();   // Confirms if the user created the correct burger.
 
-        if (isMatch) {
+        if (isMatch)
+        {
             messageLabel.setText("PERFECT! Order fulfilled! Starting new game...");
             startGame();
-        } else {
+        } else
+        {
             messageLabel.setText("MISTAKE! The stack order or contents are wrong. Starting new game...");
             startGame();
         }
     }
 
-    /** Resets the current stack and game state (called internally on error or win/loss). */
-    private void resetGame() {
+    // Resets the current stack and game state (called internally on error or win/loss)
+    private void resetGame()
+    {
         messageLabel.setText("Stack Cleared! Start over on the same order.");
         game.getMyBurger().clear();
         game.nextIngredient = 0;

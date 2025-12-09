@@ -27,8 +27,8 @@ public class Burger
 
     public int nextIngredient;        // Tracks the next required ingredient position
 
-    public Burger() // Default Constructor to add content to the ArrayLists
-    {               // and initialize the ArrayLists
+    public Burger() // Default Constructor to add content to the ArrayLists and initalize the ArrayLists.
+    {               // this will populate all burgers, selects a random burger and selects a new burger after completion.
         // Populating cheeseBurger
         this.cheeseBurger = new ArrayList<>();
         this.cheeseBurger.add("Bottom Bun"); this.cheeseBurger.add("Patty"); this.cheeseBurger.add("Cheese");
@@ -95,7 +95,7 @@ public class Burger
         this.allRecipes.add(this.lettuceWrapCheeseBurger);      // Easter Egg Burger
         // this.allRecipes.add(this.trexBurger)                 // Easter Egg Burger
 
-        // GENERATE RANDOM RECIPE TO MAKE
+        // This generates a random recipe for the user tor make.
         this.randomizeRecipe();
 
         // Reset game state
@@ -103,7 +103,7 @@ public class Burger
         this.myBurger.clear();  // Makes sure that the stack is empty.
     }
 
-    public void randomizeRecipe()
+    public void randomizeRecipe()   // Gets a random recipe for the user to make.
     {
         int randomRecipe = random.nextInt(this.allRecipes.size());
         this.currentRecipe = this.allRecipes.get(randomRecipe);
@@ -194,7 +194,6 @@ public class Burger
      */
     public boolean checkBurger()
     {
-        // Removed the redundant local variable 'targetRecipe'
         boolean isMatch = this.myBurger.equals(this.currentRecipe);
 
         if(isMatch)
